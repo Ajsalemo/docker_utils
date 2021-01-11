@@ -2,7 +2,7 @@
 
 IMAGE_NAME=$1
 TAG_NAME=$2
-ACR_NAME="ansalemocontainerregistry.azurecr.io"
+ACR_NAME=$ACR_NAME
 
 show_help() {
     printf "Usage: <command> options [parameters]\n"
