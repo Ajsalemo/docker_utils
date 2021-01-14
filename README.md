@@ -1,2 +1,2 @@
-# docker_utils
-A bash script to make building, tagging and pushing images done in one command
+# script_utils
+Bash scripts to condense and/or automate repitive local tasks.
