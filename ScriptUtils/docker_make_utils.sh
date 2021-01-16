@@ -13,6 +13,7 @@ show_help() {
     printf "  [parameters] | optional - tag of the docker image to be parsed - ex. <command> mycontainerregistry helloworld v1 \n"
     printf "\n"
     printf "  NOTE: when entering your Azure Container Registry name, you only need to add the account name. The .azurecr.io is already set. Ex: passing 'mycontainerregistry' to the argument is the same as 'mycontainerregistry.azurecr.io'"
+    exit 1
 }
 
 throw_missing_image_error() {
