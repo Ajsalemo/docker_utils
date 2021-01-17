@@ -4,9 +4,6 @@ COMMIT_MESSAGE=$1
 SPECIFY_UPSTREAM=$2
 SPECIFY_BRANCH=$3
 
-echo "$COMMIT_MESSAGE"
-echo "$SPECIFY_BRANCH"
-
 throw_missing_commit_error() {
     printf "Error: the commit message can not be empty. \n"
     show_help
@@ -60,7 +57,7 @@ run_git_commit() {
 if [[ "$COMMIT_MESSAGE" == "-h" || "$COMMIT_MESSAGE" == "--help" ]] || [[ "$SPECIFY_BRANCH" == "-h" || "$SPECIFY_BRANCH" == "--help" ]] || [[ "$SPECIFY_UPSTREAM" == "-h" || "$SPECIFY_UPSTREAM" == "--help" ]]; then
     show_help
 # If the commit message is missing then thrown an error
-elif [[ -z "$COMMIT_MESSAGE" ]]; then
+elif [[ -z "$COMMIT_MESSAGE" ]] || [[ $# -gt 3 || $# -eq 0 ]]; then
     throw_missing_commit_error
 # If the commit message is supplied then run the git push function
 elif [[ ! -z "$COMMIT_MESSAGE" ]]; then
