@@ -42,7 +42,7 @@ show_help() {
 
 run_git_commit() {
     if [[ -z "$SPECIFY_BRANCH" && "$SPECIFY_UPSTREAM" ]]; then
-        echo "Pushing to default branch 'main' to upstream '$SPECIFY_UPSTREAM'."
+        echo "Pushing to default branch 'main' to default upstream 'origin'."
         git add .
         git commit -m "$COMMIT_MESSAGE"
         git push origin main
