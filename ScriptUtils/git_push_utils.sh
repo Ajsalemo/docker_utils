@@ -13,6 +13,12 @@ throw_missing_commit_error() {
     exit 1
 }
 
+throw_missing_upstream_error() {
+    printf "Error: an upstream target must be provided. \n"
+    show_help
+    exit 1
+}
+
 throw_general_error() {
     printf "Error: an unexpected error as occurred."
     exit 1
@@ -39,8 +45,14 @@ run_git_commit() {
         echo "Pushing to default branch 'main' to upstream '$SPECIFY_UPSTREAM'."
         git add .
         git commit -m "$COMMIT_MESSAGE"
+        git push origin main
     elif [[ ! -z "$SPECIFY_UPSTREAM" && ! -z "$SPECIFY_BRANCH" ]]; then
         echo "Pushing to branch '$SPECIFY_BRANCH' and upstream '$SPECIFY_UPSTREAM'."
+        git add .
+        git commit -m "$COMMIT_MESSAGE"
+        git push $SPECIFY_UPSTREAM $SPECIFY_BRANCH
+    elif [[ -z "$SPECIFY_UPSTREAM" ]]; then
+        throw_missing_upstream_error
     fi
 }
 
