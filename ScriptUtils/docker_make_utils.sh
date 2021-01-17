@@ -37,7 +37,7 @@ throw_general_error() {
 # Build, tag and push to Azure Container Registry
 run_acr_build() {
     # If an argument for 'TAG_NAME' is not provided then build the image with the 'latest' tag
-    if [[ "$ACR_NAME" != "" && "$IMAGE_NAME" != "" && "$TAG_NAME" == "" ]]; then
+    if [[ ! -z "$ACR_NAME"  && ! -z "$IMAGE_NAME" && "$TAG_NAME" == "" ]]; then
         echo "Building image with image name: '$IMAGE_NAME' and tag 'latest'."
         docker build -t $IMAGE_NAME .
         echo "Tagging image '$IMAGE_NAME' with tag 'latest'"
@@ -45,7 +45,7 @@ run_acr_build() {
         echo "Pushing image '$IMAGE_NAME' with tag 'latest' to "$ACR_NAME" container registry."
         docker push $ACR_NAME.azurecr.io/$IMAGE_NAME:latest
     # If an argument for 'TAG_NAME' is provided, build and tag the image with the provided tag name
-    elif [[ "$ACR_NAME" != "" && "$IMAGE_NAME" != "" && "$TAG_NAME" != "" ]]; then
+    elif [[ ! -z "$ACR_NAME" && ! -z "$IMAGE_NAME" && ! -z "$TAG_NAME" ]]; then
         echo "Building image with image name: '$IMAGE_NAME' and tag '$TAG_NAME'"
         docker build -t $IMAGE_NAME .
         echo "Tagging image '$IMAGE_NAME' with tag '$TAG_NAME'"

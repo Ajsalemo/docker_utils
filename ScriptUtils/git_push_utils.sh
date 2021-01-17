@@ -62,7 +62,7 @@ if [[ "$COMMIT_MESSAGE" == "-h" || "$COMMIT_MESSAGE" == "--help" ]] || [[ "$SPEC
 # If the commit message is missing then thrown an error
 elif [[ -z "$COMMIT_MESSAGE" ]]; then
     throw_missing_commit_error
-# If the commit message is supplied then run the git push function with the branch defaulted to 'main'
+# If the commit message is supplied then run the git push function
 elif [[ ! -z "$COMMIT_MESSAGE" ]]; then
     run_git_commit
 # Throw an error if none of the above apply
